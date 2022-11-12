@@ -49,26 +49,44 @@ public class Connect {
         return null;
     }
 
-    public List<ValueConfig> getValueConfigByIdDatabase(int id) throws SQLException {
-        List<ValueConfig> list = new ArrayList<>();
-        Connection con = connectDatabaseConfig();
-        String sql = "CALL getValueConfigByIdDatabase(?);";
-        CallableStatement cs = con.prepareCall(sql);
-        cs.setInt(1, id);
-        ResultSet rs = cs.executeQuery();
-        while (rs.next()) {
-            ValueConfig valueConfig = new ValueConfig(rs.getInt("id"), rs.getString("name"), rs.getString("value"));
-            list.add(valueConfig);
-
+    public Connection connectDatabaseWareHouse() {
+        List<ValueConfig> list = getValueConfigByIdDatabase(1);
+        try {
+            Class.forName(getValueByName("for_name",1).trim());
+            String url = getValueByName("string_connection",1).trim();
+            return DriverManager.getConnection(url, getValueByName("user_name",1).trim(), getValueByName("password",1));
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
         }
-        cs.close();
-        rs.close();
-        con.close();
-        return list;
-
+        return null;
     }
 
-    public String getValueByName(String name, int idDatabase) throws SQLException {
+    public List<ValueConfig> getValueConfigByIdDatabase(int id) {
+        try {
+            List<ValueConfig> list = new ArrayList<>();
+            Connection con = connectDatabaseConfig();
+            String sql = "CALL getValueConfigByIdDatabase(?);";
+            CallableStatement cs = null;
+
+            cs = con.prepareCall(sql);
+
+            cs.setInt(1, id);
+            ResultSet rs = cs.executeQuery();
+            while (rs.next()) {
+                ValueConfig valueConfig = new ValueConfig(rs.getInt("id"), rs.getString("name"), rs.getString("value"));
+                list.add(valueConfig);
+
+            }
+            cs.close();
+            rs.close();
+            con.close();
+            return list;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+    public String getValueByName(String name, int idDatabase) {
         List<ValueConfig> list = getValueConfigByIdDatabase(idDatabase);
         for (ValueConfig valueConfig : list) {
             if (valueConfig.getName().equals(name)) {
@@ -78,10 +96,16 @@ public class Connect {
         return null;
     }
 
-    public static void main(String[] args) throws SQLException {
-        System.out.println(Connect.getInstance().getValueByName("user_name", 1));
-
-
+    public String getValueByName(String name,  List<ValueConfig> list) {
+        for (ValueConfig valueConfig : list) {
+            if (valueConfig.getName().equals(name)) {
+                return valueConfig.getValue();
+            }
+        }
+        return "";
     }
+
+
+
 
 }
