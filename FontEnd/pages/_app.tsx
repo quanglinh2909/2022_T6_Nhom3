@@ -9,7 +9,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import { Provider } from 'react-redux';
 import { SWRConfig } from 'swr';
-import '../styles/globals.css';
+// import '../styles/globals.css';
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
@@ -23,7 +23,7 @@ function MyApp({
         <Provider store={store}>
             <CacheProvider value={emotionCache}>
                 <ThemeProvider theme={theme}>
-                    <CssBaseline />
+                    {/* <CssBaseline /> */}
 
                     <SWRConfig
                         value={{
