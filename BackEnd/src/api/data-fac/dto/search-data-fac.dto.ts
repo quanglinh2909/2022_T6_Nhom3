@@ -16,3 +16,13 @@ export class SearchDataProvinceDto {
     @ApiProperty()
     province: number;
 }
+export class SearchNumberDto {
+    @ApiProperty()
+    number: string;
+
+    @ApiProperty()
+    date: Date;
+
+    @ApiProperty()
+    province: number;
+}

@@ -18,10 +18,10 @@ export function MainLayout({ children }: LayoutProps) {
                     <div id="content">
                         <div className="container">
                             <div className="row">
-                                <div id="col-left" className="col-xs-12 col-md-9">
+                                <div id="col-left" className="col-xs-12 col-md-12">
                                     {children}
                                 </div>
-                                <LeftMenu />
+                                {/* <LeftMenu /> */}
                             </div>
                         </div>
                     </div>

@@ -9,8 +9,8 @@ const DoTheoTinh = (props: IDoTheoTinhProps) =>{
   return (
    <>
    <>
-    <TableHome />
-    <TableHome />
+    <TableHome data={undefined} />
+    <TableHome data={undefined} />
 </>
    </>
   );

@@ -53,14 +53,13 @@ public class LoadDataToWarehouse {
     public void createDataFac(int idProvince, String idDate, int area,String result,String value, int prize){
         try {
             PreparedStatement ps = Connect.getInstance().connectDatabaseWareHouse().prepareStatement("insert into " +
-                    "data_fac(idProvince,idDate,idArea,createAt,result,value,idPrize) values(?,?,?,?,?,?,?)");
+                    "data_fac(idProvince,idDate,idArea,result,value,idPrize) values(?,?,?,?,?,?)");
             ps.setInt(1,idProvince);
             ps.setString(2,idDate);
             ps.setInt(3,area);
-            ps.setTimestamp(4,Timestamp.valueOf(LocalDateTime.now()));
-            ps.setString(5,result);
-            ps.setString(6,value);
-            ps.setInt(7,prize);
+            ps.setString(4,result);
+            ps.setString(5,value);
+            ps.setInt(6,prize);
             ps.executeUpdate();
             ps.close();
 

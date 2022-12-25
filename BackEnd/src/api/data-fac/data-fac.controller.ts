@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestj
 import { ApiTags } from '@nestjs/swagger';
 import { DataFacService } from './data-fac.service';
 import { CreateDataFacDto } from './dto/create-data-fac.dto';
-import { SearchDataAreaDto, SearchDataProvinceDto } from './dto/search-data-fac.dto';
+import { SearchDataAreaDto, SearchDataProvinceDto, SearchNumberDto } from './dto/search-data-fac.dto';
 import { UpdateDataFacDto } from './dto/update-data-fac.dto';
 
 @Controller('data-fac')
@@ -49,6 +49,17 @@ export class DataFacController {
     @Patch(':id')
     async update(@Param('id') id: string, @Body() updateDataFacDto: UpdateDataFacDto) {
         return await this.dataFacService.update(+id, updateDataFacDto);
+    }
+
+    @ApiTags('Fact Manager')
+    @Get('/list/province')
+    async getProvinceByDate(@Query('date') date: Date) {
+        return await this.dataFacService.getProvinceByDate(date);
+    }
+    @ApiTags('Fact Manager')
+    @Post('/search-number')
+    async searchNumber(@Body() searchNumberDto: SearchNumberDto) {
+        return await this.dataFacService.searchNumber(searchNumberDto);
     }
 
     @ApiTags('Fact Manager')

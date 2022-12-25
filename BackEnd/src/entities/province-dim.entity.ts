@@ -17,7 +17,7 @@ export class ProvinceDimEntity {
     @UpdateDateColumn()
     updateAt: Date;
 
-    @Column({ name: 'dayexpiration_date' })
+    @Column({ name: 'dayexpiration_date'})
     dayexpirationDate: Date;
 
     @CreateDateColumn({ name: 'created_at' })
