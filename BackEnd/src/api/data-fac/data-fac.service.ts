@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { DateDimService } from '../date-dim/date-dim.service';
 import { CreateDataFacDto } from './dto/create-data-fac.dto';
-import { SearchDataAreaDto, SearchDataProvinceDto } from './dto/search-data-fac.dto';
+import { SearchDataAreaDto, SearchDataProvinceDto, SearchNumberDto } from './dto/search-data-fac.dto';
 import { UpdateDataFacDto } from './dto/update-data-fac.dto';
 
 @Injectable()
@@ -66,7 +66,31 @@ export class DataFacService {
             relations: ['areaDim', 'dateDim', 'provinceDim','prizeDim'],
         });
     }
-
+    async getProvinceByDate(date: Date) {
+        // get list province by date distinct
+        const result = await this.dataFacRepository
+            .createQueryBuilder('dataFac')
+            .select(['DISTINCT(provinceDim.id) as id', 'provinceDim.name as name'])
+            .leftJoin('dataFac.dateDim', 'dateDim')
+            .leftJoin('dataFac.provinceDim', 'provinceDim')
+            .where('dateDim.date = :date', { date: date });
+        return await result.getRawMany();
+    }
+    async searchNumber(searchNumberDto: SearchNumberDto) {
+        const winPrize = await this.dataFacRepository.find({
+            where: {
+                dateDim: { date: searchNumberDto.date },
+                provinceDim: searchNumberDto.province,
+                result: searchNumberDto.number,
+            },
+            relations: ['areaDim', 'dateDim', 'prizeDim'],
+        });
+        const data = await this.searchByProvince({
+            date: searchNumberDto.date,
+            province: searchNumberDto.province,
+        });
+        return { winPrize, data };
+    }
    
 
     async update(id: number, updateDataFacDto: UpdateDataFacDto) {

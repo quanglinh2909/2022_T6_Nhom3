@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : datawarehouse
+ Source Server         : conect
  Source Server Type    : MySQL
- Source Server Version : 100425
+ Source Server Version : 100427 (10.4.27-MariaDB)
  Source Host           : localhost:3306
  Source Schema         : datawarehouse
 
  Target Server Type    : MySQL
- Target Server Version : 100425
+ Target Server Version : 100427 (10.4.27-MariaDB)
  File Encoding         : 65001
 
- Date: 12/11/2022 16:35:58
+ Date: 25/12/2022 21:11:09
 */
 
 SET NAMES utf8mb4;
@@ -25,11 +25,11 @@ CREATE TABLE `area_dim`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `Key` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `Name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `dayexpiration_date` datetime NULL DEFAULT NULL,
-  `updateAt` datetime NULL DEFAULT NULL,
-  `createAt` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `dayexpiration_date` datetime NOT NULL,
+  `updateAt` datetime(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `created_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for data_fac
@@ -37,32 +37,32 @@ CREATE TABLE `area_dim`  (
 DROP TABLE IF EXISTS `data_fac`;
 CREATE TABLE `data_fac`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `idProvince` int NULL DEFAULT NULL,
-  `idDate` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `idArea` int NULL DEFAULT NULL,
-  `createAt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updateAt` datetime NOT NULL DEFAULT '9999-12-31 00:00:00',
+  `updateAt` datetime(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `result` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `dayexpiration_date` datetime NOT NULL DEFAULT '9999-12-31 00:00:00',
-  `result` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `created_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `idDate` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `idArea` int NULL DEFAULT NULL,
+  `idProvince` int NULL DEFAULT NULL,
   `idPrize` int NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `province_FK`(`idProvince` ASC) USING BTREE,
-  INDEX `date_FK`(`idDate` ASC) USING BTREE,
-  INDEX `area_FK`(`idArea` ASC) USING BTREE,
-  INDEX `prize_FK`(`idPrize` ASC) USING BTREE,
-  CONSTRAINT `area_FK` FOREIGN KEY (`idArea`) REFERENCES `area_dim` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `prize_FK` FOREIGN KEY (`idPrize`) REFERENCES `prize_dim` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `province_FK` FOREIGN KEY (`idProvince`) REFERENCES `province_dim` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `date_FK` FOREIGN KEY (`idDate`) REFERENCES `date_dim` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 592 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  INDEX `FK_f4e5fe29a11081ff2c52b0bff4f`(`idDate` ASC) USING BTREE,
+  INDEX `FK_a77d7c02f4ad1ab1ee312aa6ba7`(`idArea` ASC) USING BTREE,
+  INDEX `FK_3abfbcdca4eb22b0546eb12d05d`(`idProvince` ASC) USING BTREE,
+  INDEX `FK_3aaf7abe600c9644514d301a4b3`(`idPrize` ASC) USING BTREE,
+  CONSTRAINT `FK_3aaf7abe600c9644514d301a4b3` FOREIGN KEY (`idPrize`) REFERENCES `prize_dim` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_3abfbcdca4eb22b0546eb12d05d` FOREIGN KEY (`idProvince`) REFERENCES `province_dim` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_a77d7c02f4ad1ab1ee312aa6ba7` FOREIGN KEY (`idArea`) REFERENCES `area_dim` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_f4e5fe29a11081ff2c52b0bff4f` FOREIGN KEY (`idDate`) REFERENCES `date_dim` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE = InnoDB AUTO_INCREMENT = 424 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for date_dim
 -- ----------------------------
 DROP TABLE IF EXISTS `date_dim`;
 CREATE TABLE `date_dim`  (
-  `id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `id` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `date` date NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
@@ -92,7 +92,7 @@ CREATE TABLE `log_staging`  (
   `createAt` datetime NULL DEFAULT NULL,
   `Contact` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 577 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1695 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for prize_dim
@@ -101,10 +101,10 @@ DROP TABLE IF EXISTS `prize_dim`;
 CREATE TABLE `prize_dim`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `updateAt` date NOT NULL,
-  `dayexpiration_date` date NOT NULL,
-  `stt` int NULL DEFAULT NULL,
-  `createAt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `stt` int NOT NULL,
+  `created_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `updateAt` datetime(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `dayexpiration_date` datetime NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
@@ -115,9 +115,9 @@ DROP TABLE IF EXISTS `province_dim`;
 CREATE TABLE `province_dim`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `updateAt` date NOT NULL,
-  `dayexpiration_date` date NOT NULL,
-  `createAt` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `updateAt` datetime(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `dayexpiration_date` datetime NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 64 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 

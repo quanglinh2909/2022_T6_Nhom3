@@ -1,0 +1,383 @@
+/* INPUT */
+.form-control{
+	border:1px solid #000;
+	font-size: 12px;
+	height: 24px;
+	padding:5px;
+	box-shadow: none;
+	border-radius: 0;
+}
+.form-horizontal .form-group{
+	margin-right: 0;
+}
+.form-group{
+	margin-bottom: 10px;
+}
+.btn{
+	border-radius: 0;
+    padding: 2px 10px;
+}
+.btn-default{
+	background-color: #c93633;
+    color: #fff;
+    border-color: transparent;
+}
+/*.table-responsive{
+	border:none;
+	margin-bottom: 0;
+}*/
+/*.google_arrange iframe {
+	vertical-align: bottom !important;
+}*/
+/*header*/
+.social-button {
+	float:right;
+	padding-top: 15px;
+}
+.social-button ul li {
+	float: left;
+}
+@media (max-width: 768px) {	
+	h1#logo {
+        text-align: center;
+        margin-bottom: 30px !important;
+    }
+    .bkq636 div td.arrange-class{
+		width:16%;		
+	}
+	#header-top .container #header-top-right class[*="col-"]{
+		padding-right: 0;
+		padding-left: 0;
+	}
+	.table-responsive {
+		border:none;
+		margin-bottom: 0;
+	}
+	.mm-result-left {
+	    border: 2px #000000 solid;
+	}
+	.mm-result-right {
+	    border: 2px solid #000000;
+	}
+}
+@media (max-width: 1200px) {	
+	.mm-result div button{
+	margin-left:5%;
+	}
+	.mm-result select {
+	font-weight: bold;
+	margin-right: 10px;
+	}
+	.mm-result div input {
+		margin-left: 10px;
+		margin-right:5px;
+	}
+}
+@media (max-width: 768px) {	
+	.social-button {
+	float:right;
+	padding-top: 0px;
+	}
+}
+@media (max-width: 510px) {
+	.mm-result-left .leftcl .dayofweek, .mm-result-left .rightcl .province,
+	.mm-result-left .leftcl .fullday, .mm-result-left .rightcl .province-code,
+	.mm-result-left .leftcl .award-8, .mm-result-left .rightcl .award-8,
+	.mm-result-left .leftcl .award-7, .mm-result-left .rightcl .award-7,
+	.mm-result-left .leftcl .award-6, .mm-result-left .rightcl .award-6,
+	.mm-result-left .leftcl .award-5, .mm-result-left .rightcl .award-5,
+	.mm-result-left .leftcl .award-4, .mm-result-left .rightcl .award-4,
+	.mm-result-left .leftcl .award-3, .mm-result-left .rightcl .award-3,
+	.mm-result-left .leftcl .award-2, .mm-result-left .rightcl .award-2,
+	.mm-result-left .leftcl .award-1, .mm-result-left .rightcl .award-1,
+	.mm-result-left .leftcl .award-special, .mm-result-left .rightcl .award-special,
+	.mm-result-left .leftcl .giai8, .mm-result-left .rightcl .giai8,
+	.mm-result-left .leftcl .giai7, .mm-result-left .rightcl .giai7,
+	.mm-result-left .leftcl .giai6, .mm-result-left .rightcl .giai6,
+	.mm-result-left .leftcl .giai5, .mm-result-left .rightcl .giai5,
+	.mm-result-left .leftcl .giai4, .mm-result-left .rightcl .giai4,
+	.mm-result-left .leftcl .giai3, .mm-result-left .rightcl .giai3,
+	.mm-result-left .leftcl .giai2, .mm-result-left .rightcl .giai2,
+	.mm-result-left .leftcl .giai1, .mm-result-left .rightcl .giai1,
+	.mm-result-left .leftcl .giaidb, .mm-result-left .rightcl .giaidb {
+	    font-weight: bold;
+	    font-size: 13px;
+	}
+	.mm-result-left .leftcl .fullday, .mm-result-left .rightcl .province-code,
+	.mm-result-left .leftcl .award-8, .mm-result-left .rightcl .award-8,
+	.mm-result-left .leftcl .award-7, .mm-result-left .rightcl .award-7,
+	.mm-result-left .leftcl .award-6, .mm-result-left .rightcl .award-6,
+	.mm-result-left .leftcl .award-5, .mm-result-left .rightcl .award-5,
+	.mm-result-left .leftcl .award-4, .mm-result-left .rightcl .award-4,
+	.mm-result-left .leftcl .award-3, .mm-result-left .rightcl .award-3,
+	.mm-result-left .leftcl .award-2, .mm-result-left .rightcl .award-2,
+	.mm-result-left .leftcl .award-1, .mm-result-left .rightcl .award-1,
+	.mm-result-left .leftcl .award-special, .mm-result-left .rightcl .award-special,
+	.mm-result-left .leftcl .giai8, .mm-result-left .rightcl .giai8,
+	.mm-result-left .leftcl .giai7, .mm-result-left .rightcl .giai7,
+	.mm-result-left .leftcl .giai6, .mm-result-left .rightcl .giai6,
+	.mm-result-left .leftcl .giai5, .mm-result-left .rightcl .giai5,
+	.mm-result-left .leftcl .giai4, .mm-result-left .rightcl .giai4,
+	.mm-result-left .leftcl .giai3, .mm-result-left .rightcl .giai3,
+	.mm-result-left .leftcl .giai2, .mm-result-left .rightcl .giai2,
+	.mm-result-left .leftcl .giai1, .mm-result-left .rightcl .giai1,
+	.mm-result-left .leftcl .giaidb, .mm-result-left .rightcl .giaidb {
+	    font-size: 15px;
+	}
+	.mm-result-left .rightcl .award-8,
+	.mm-result-left .rightcl .award-7,
+	.mm-result-left .rightcl .award-6,
+	.mm-result-left .rightcl .award-5,
+	.mm-result-left .rightcl .award-4,
+	.mm-result-left .rightcl .award-3,
+	.mm-result-left .rightcl .award-2,
+	.mm-result-left .rightcl .award-1,
+	.mm-result-left .rightcl .award-special {
+	    text-align: right;
+	    padding-right: 2px;
+	}
+	.mm-result-left .rightcl .award-8,
+	.mm-result-left .rightcl .award-special,
+	.mm-result-left .rightcl .award-special-second,
+	.mm-result-left .rightcl .award-7-second,
+	.mm-result-left .rightcl .giai8,
+	.mm-result-left .rightcl .giaidb{
+	    color: #BA2424;
+	    font-size: 18px;
+	    line-height: 100%;
+	}
+
+	.mm-result-left .rightcl .giai8,
+	.mm-result-left .rightcl .giaidb {
+		line-height: 37px;
+	}
+	.mm-result-left .rightcl .giai4 {
+		line-height: 31px;
+	}
+	.mm-result-left .rightcl .award-7,
+	.mm-result-left .rightcl .award-6,
+	.mm-result-left .rightcl .award-5,
+	.mm-result-left .rightcl .award-4,
+	.mm-result-left .rightcl .award-3,
+	.mm-result-left .rightcl .award-2,
+	.mm-result-left .rightcl .award-1,
+	.mm-result-left .rightcl .giai7,
+	.mm-result-left .rightcl .giai6,
+	.mm-result-left .rightcl .giai5,
+	.mm-result-left .rightcl .giai4,
+	.mm-result-left .rightcl .giai3,
+	.mm-result-left .rightcl .giai2,
+	.mm-result-left .rightcl .giai1{
+		font-size: 16px;
+	}
+	.mm-result-right .leftcl .name, .mm-result-right .rightcl .name,
+	.mm-result-right .leftcl .award-9, .mm-result-right .rightcl .award-9,
+	.mm-result-right .leftcl .award-8, .mm-result-right .rightcl .award-8,
+	.mm-result-right .leftcl .award-7, .mm-result-right .rightcl .award-7,
+	.mm-result-right .leftcl .award-6, .mm-result-right .rightcl .award-6,
+	.mm-result-right .leftcl .award-5, .mm-result-right .rightcl .award-5,
+	.mm-result-right .leftcl .award-4, .mm-result-right .rightcl .award-4,
+	.mm-result-right .leftcl .award-3, .mm-result-right .rightcl .award-3,
+	.mm-result-right .leftcl .award-2, .mm-result-right .rightcl .award-2,
+	.mm-result-right .leftcl .award-1, .mm-result-right .rightcl .award-1,
+	.mm-result-right .leftcl .award-0, .mm-result-right .rightcl .award-0{
+	    font-weight: bold;
+	    font-size: 16px;
+	    height: 26px;
+	}
+	.mm-result-left .leftcl .dayofweek-second, .mm-result-left .rightcl .province-second,
+	.mm-result-left .leftcl .award-7-second, .mm-result-left .rightcl .award-7-second,
+	.mm-result-left .leftcl .award-6-second, .mm-result-left .rightcl .award-6-second,
+	.mm-result-left .leftcl .award-5-second, .mm-result-left .rightcl .award-5-second,
+	.mm-result-left .leftcl .award-4-second, .mm-result-left .rightcl .award-4-second,
+	.mm-result-left .leftcl .award-3-second, .mm-result-left .rightcl .award-3-second,
+	.mm-result-left .leftcl .award-2-second, .mm-result-left .rightcl .award-2-second,
+	.mm-result-left .leftcl .award-1-second, .mm-result-left .rightcl .award-1-second,
+	.mm-result-left .leftcl .award-special-second, .mm-result-left .rightcl .award-special-second{
+	    font-weight: bold;
+	    font-size: 13px;
+	}
+	.mm-result-left .leftcl .award-7-second, .mm-result-left .rightcl .award-7-second,
+	.mm-result-left .leftcl .award-6-second, .mm-result-left .rightcl .award-6-second,
+	.mm-result-left .leftcl .award-5-second, .mm-result-left .rightcl .award-5-second,
+	.mm-result-left .leftcl .award-4-second, .mm-result-left .rightcl .award-4-second,
+	.mm-result-left .leftcl .award-3-second, .mm-result-left .rightcl .award-3-second,
+	.mm-result-left .leftcl .award-2-second, .mm-result-left .rightcl .award-2-second,
+	.mm-result-left .leftcl .award-1-second, .mm-result-left .rightcl .award-1-second,
+	.mm-result-left .leftcl .award-special-second, .mm-result-left .rightcl .award-special-second {
+		font-size:15px;
+	}
+	.mm-result-right .leftcl .name-second, .mm-result-right .rightcl .name-second,
+	.mm-result-right .leftcl .award-9-second, .mm-result-right .rightcl .award-9-second,
+	.mm-result-right .leftcl .award-8-second, .mm-result-right .rightcl .award-8-second,
+	.mm-result-right .leftcl .award-7-second, .mm-result-right .rightcl .award-7-second,
+	.mm-result-right .leftcl .award-6-second, .mm-result-right .rightcl .award-6-second,
+	.mm-result-right .leftcl .award-5-second, .mm-result-right .rightcl .award-5-second,
+	.mm-result-right .leftcl .award-4-second, .mm-result-right .rightcl .award-4-second,
+	.mm-result-right .leftcl .award-3-second, .mm-result-right .rightcl .award-3-second,
+	.mm-result-right .leftcl .award-2-second, .mm-result-right .rightcl .award-2-second,
+	.mm-result-right .leftcl .award-1-second, .mm-result-right .rightcl .award-1-second,
+	.mm-result-right .leftcl .award-0-second, .mm-result-right .rightcl .award-0-second,
+	{
+	    font-weight: bold;
+	    font-size: 16px;
+	    height: 27px;
+	}
+	.mm-result-right .rightcl .giai9, .mm-result-right .leftcl .giai9,
+	.mm-result-right .rightcl .giai8, .mm-result-right .leftcl .giai8,
+	.mm-result-right .rightcl .giai7, .mm-result-right .leftcl .giai7,
+	.mm-result-right .rightcl .giai6, .mm-result-right .leftcl .giai6,
+	.mm-result-right .rightcl .giai5, .mm-result-right .leftcl .giai5,
+	.mm-result-right .rightcl .giai4, .mm-result-right .leftcl .giai4,
+	.mm-result-right .rightcl .giai3, .mm-result-right .leftcl .giai3,
+	.mm-result-right .rightcl .giai2, .mm-result-right .leftcl .giai2,
+	.mm-result-right .rightcl .giai1, .mm-result-right .leftcl .giai1,
+	.mm-result-right .rightcl .giai0, .mm-result-right .leftcl .giai0,
+	.mm-result-right .rightcl .ten, .mm-result-right .leftcl .ten {
+	font-weight: bold;
+    font-size: 16px;
+    height: 30px;
+}
+	.mm-result-left .rightcl .award-7-second,
+	.mm-result-left .rightcl .award-6-second,
+	.mm-result-left .rightcl .award-5-second,
+	.mm-result-left .rightcl .award-4-second,
+	.mm-result-left .rightcl .award-3-second,
+	.mm-result-left .rightcl .award-2-second,
+	.mm-result-left .rightcl .award-1-second,
+	.mm-result-left .rightcl .award-special-second {
+		font-size: 16px;
+	}
+	.mm-result-left .leftcl .award-7-special, .mm-result-left .rightcl .award-7-special,
+	.mm-result-left .leftcl .award-6-special, .mm-result-left .rightcl .award-6-special,
+	.mm-result-left .leftcl .award-5-special, .mm-result-left .rightcl .award-5-special,
+	.mm-result-left .leftcl .award-4-special, .mm-result-left .rightcl .award-4-special,
+	.mm-result-left .leftcl .award-3-special, .mm-result-left .rightcl .award-3-special,
+	.mm-result-left .leftcl .award-2-special, .mm-result-left .rightcl .award-2-special,
+	.mm-result-left .leftcl .award-1-special, .mm-result-left .rightcl .award-1-special,
+	.mm-result-left .leftcl .award-special-special, .mm-result-left .rightcl .award-special-special,
+	.mm-result-left thead th
+	{
+	    font-weight: bold;
+	    font-size: 16px;
+	}
+	.mm-result-left .rightcl .award-7-special,
+	.mm-result-left .rightcl .award-6-special,
+	.mm-result-left .rightcl .award-5-special,
+	.mm-result-left .rightcl .award-4-special,
+	.mm-result-left .rightcl .award-3-special,
+	.mm-result-left .rightcl .award-2-special,
+	.mm-result-left .rightcl .award-1-special,
+	.mm-result-left .rightcl .award-special-special {
+		font-size: 16px;
+	}
+	.mm-result-left .rightcl .award-8,
+	.mm-result-left .rightcl .award-special-second,
+	.mm-result-left .rightcl .award-7-second{
+		font-size:20px;
+	}
+	table td span.blue-col, table td span.red-col {
+	font-size:22px;
+	}
+	.col-xs-12 {
+		padding-left: 0px;
+		padding-right: 0px;
+	}	
+	.header-title h4{
+		font-size: 14px;
+	}
+	.col-xs-12-pad{
+		padding-right:15px;
+		padding-left: 15px;
+	}
+	.mm-result-left .leftcl .giai8,
+	.mm-result-left .leftcl .giai7,
+	.mm-result-left .leftcl .giai6,
+	.mm-result-left .leftcl .giai5,
+	.mm-result-left .leftcl .giai4,
+	.mm-result-left .leftcl .giai3,
+	.mm-result-left .leftcl .giai2,
+	.mm-result-left .leftcl .giai1,
+	.mm-result-left .leftcl .giaidb {
+	    text-align: left;
+	   
+	}
+}
+
+/*Table xổ số*/
+@media (max-width: 490px) {
+	.mm-result-left .rightcl .award-8,
+	.mm-result-left .rightcl .award-7,
+	.mm-result-left .rightcl .award-6,
+	.mm-result-left .rightcl .award-5,
+	.mm-result-left .rightcl .award-4,
+	.mm-result-left .rightcl .award-3,
+	.mm-result-left .rightcl .award-2,
+	.mm-result-left .rightcl .award-1,
+	.mm-result-left .rightcl .award-special {
+	    text-align: right;
+	    padding-right: 2px;
+	}
+	
+	.mm-result-left .leftcl .award-7-special, .mm-result-left .rightcl .award-7-special,
+	.mm-result-left .leftcl .award-6-special, .mm-result-left .rightcl .award-6-special,
+	.mm-result-left .leftcl .award-5-special, .mm-result-left .rightcl .award-5-special,
+	.mm-result-left .leftcl .award-4-special, .mm-result-left .rightcl .award-4-special,
+	.mm-result-left .leftcl .award-3-special, .mm-result-left .rightcl .award-3-special,
+	.mm-result-left .leftcl .award-2-special, .mm-result-left .rightcl .award-2-special,
+	.mm-result-left .leftcl .award-1-special, .mm-result-left .rightcl .award-1-special,
+	.mm-result-left .leftcl .award-special-special, .mm-result-left .rightcl .award-special-special,
+	.mm-result-left thead th{
+	    font-weight: bold;
+	    font-size: 16px;
+	}
+	.mm-result-left .rightcl .award-7-special,
+	.mm-result-left .rightcl .award-6-special,
+	.mm-result-left .rightcl .award-5-special,
+	.mm-result-left .rightcl .award-4-special,
+	.mm-result-left .rightcl .award-3-special,
+	.mm-result-left .rightcl .award-2-special,
+	.mm-result-left .rightcl .award-1-special,
+	.mm-result-left .rightcl .award-special-special {
+		font-size: 16px;
+	}
+	table td span.blue-col, table td span.red-col {
+	font-size:18px;
+	}
+	.bkq636 div td.arrange-class{
+		width:30%;		
+	}
+	#wg-kqxs, #wg-dvs{
+		width: 100%;
+	}
+	#wg-kqxs{
+		margin-bottom: 10px;
+	}
+	.row-eq-height{	    
+	    display:table;
+	}
+	.post-container {
+	    overflow: auto;
+	    margin: 5px 0;
+	}
+	.post-container .post-thumbnail {
+		float:none;
+	}
+	.post-container .post-thumbnail img {
+		display: block;
+		margin: 0 auto;
+	}
+	.post-container .post-content {
+		margin-left: 0px;
+	}
+	.post-container .post-content .post-title {
+		font-size:16px;
+		font-weight: bold;
+	}
+}
+@media (max-width: 320px) {
+	.mm-result-left td.arrange {
+	    width: 25%;
+	}
+
+}

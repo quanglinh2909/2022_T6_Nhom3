@@ -49,6 +49,11 @@ public class Connect {
         return null;
     }
 
+    public static void main(String[] args) {
+        Connect connect = new Connect();
+        System.out.println(connect.connectDatabaseWareHouse());
+    }
+
     public Connection connectDatabaseWareHouse() {
         List<ValueConfig> list = getValueConfigByIdDatabase(1);
         try {

@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : datawarehouse
+ Source Server         : conect
  Source Server Type    : MySQL
- Source Server Version : 100425
+ Source Server Version : 100427 (10.4.27-MariaDB)
  Source Host           : localhost:3306
  Source Schema         : config_data_warehouse
 
  Target Server Type    : MySQL
- Target Server Version : 100425
+ Target Server Version : 100427 (10.4.27-MariaDB)
  File Encoding         : 65001
 
- Date: 12/11/2022 16:36:16
+ Date: 25/12/2022 21:03:59
 */
 
 SET NAMES utf8mb4;
@@ -26,7 +26,12 @@ CREATE TABLE `database`  (
   `nameDatabase` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `keyDatabase` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of database
+-- ----------------------------
+INSERT INTO `database` VALUES (1, 'warehouse', 'warehouse');
 
 -- ----------------------------
 -- Table structure for value_config
@@ -40,7 +45,17 @@ CREATE TABLE `value_config`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idDatabase`(`idDatabase` ASC) USING BTREE,
   CONSTRAINT `value_config_ibfk_1` FOREIGN KEY (`idDatabase`) REFERENCES `database` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of value_config
+-- ----------------------------
+INSERT INTO `value_config` VALUES (12, 'for_name', 'com.mysql.cj.jdbc.Driver', 1);
+INSERT INTO `value_config` VALUES (13, 'string_connection', 'jdbc:mysql://localhost:3306/datawarehouse', 1);
+INSERT INTO `value_config` VALUES (14, 'user_name', 'root', 1);
+INSERT INTO `value_config` VALUES (15, 'password', NULL, 1);
+INSERT INTO `value_config` VALUES (16, 'concat', 'Quang Linh', 1);
+INSERT INTO `value_config` VALUES (17, 'PATH_SAVE_CSV', 'D:/Wawhouse/2022_T6_Nhom3/data', 1);
 
 -- ----------------------------
 -- Procedure structure for getValueConfigByIdDatabase

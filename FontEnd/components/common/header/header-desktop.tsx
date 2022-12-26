@@ -1,18 +1,69 @@
-import React from 'react';
+import { homeApi } from '@/api/dataFac';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 
 export interface IHeaderDesktopProps {}
 
 export default function HeaderDesktop(props: IHeaderDesktopProps) {
+    const router = useRouter();
+    const [area, setArea] = React.useState<any>([]);
+    const [provinceArray, setProvinceArray] = React.useState<any>([]);
+
+    const [dayOfWeek, setDayOfWeek] = React.useState<any>(2);
+    const redirectPage = (t: number,id:any,key:any) => {
+        router.push(`/do-theo-thu?t=${t}&id=${id}&key=${key}`);
+    }
+    useEffect(() => {
+        (async () => {
+            const res = await homeApi.getArea();
+            setArea(res.data);
+        })();
+        const date = new Date();
+        const dateOfweek: any = date.getDay()+2;
+        setDayOfWeek(dateOfweek);
+
+    }, []);
+    const changeDateDo = async (data:any)=>{
+        const date :any = document.querySelector('#inputDate')
+        const arr = date.value.split("/")
+        let t = ''
+        if (arr.length == 3){
+            t = arr[2]+"/"+arr[1]+"/"+arr[0]
+
+        }
+        const res = await homeApi.getProvinceDove(t);
+        setProvinceArray(res.data)
+        
+    }
+    const clickButton = ()=>{
+        const date :any = document.querySelector('#inputDate')
+        const idProvince :any = document.querySelector('#input')
+        const number :any = document.querySelector('#inputNumber')
+
+
+        const arr = date.value.split("/")
+        let t = ''
+        if (arr.length == 3){
+            t = arr[2]+"/"+arr[1]+"/"+arr[0]
+        }
+
+        if (t && idProvince.value && number.value && number.value.length > 0 && idProvince.value.length > 0 && t.length > 0){
+            router.push(`do-so?d=${t}&p=${idProvince.value}&n=${number.value}`)
+        }
+
+    }
     return (
         <div id="header">
+            
             <div id="header-top">
                 <div className="container">
                     <div className="row">
                         <div id="header-logo" className="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                             <h1 id="logo">
-                                <a href="#">
-                                    <img src="images/xxquanglinh.png" alt="Xổ Số Đại Phát" />
-                                </a>
+                                <span  onClick={()=>{router.push('/')}} style={{cursor:'pointer'}}>
+                                <img src="images/xxquanglinh.png" alt="Xổ Số" />
+                                </span>
+                               
                             </h1>
                         </div>
                         <div
@@ -23,21 +74,15 @@ export default function HeaderDesktop(props: IHeaderDesktopProps) {
                                 <h5 className="widget-mini-header">KQXS mới nhất</h5>
                                 <div className="widget-content">
                                     <ul>
-                                        <li>
-                                            <a href="#" title="Miền Nam">
-                                                Miền Nam
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="Miền Trung">
-                                                Miền Trung
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="Miền Bắc">
-                                                Miền Bắc
-                                            </a>
-                                        </li>
+                                    {area.map((item: any, index: number) => {
+                                                        return  <li key={index}>
+                                                        <a style={{cursor:'pointer'}} onClick={()=> redirectPage(dayOfWeek,item.id,item.key)} title="Miền Nam">
+                                                           {item.name}
+                                                        </a>
+                                                    </li>
+                                    })}
+
+                                        
                                     </ul>
                                 </div>
                             </div>
@@ -58,9 +103,9 @@ export default function HeaderDesktop(props: IHeaderDesktopProps) {
                                                     name="date"
                                                     id="inputDate"
                                                     className="form-control"
-                                                    value=""
                                                     required={true}
                                                     placeholder="Chọn ngày"
+                                                   
                                                 />
                                             </div>
                                             <div className="col-sm-6">
@@ -69,12 +114,13 @@ export default function HeaderDesktop(props: IHeaderDesktopProps) {
                                                     id="input"
                                                     className="form-control"
                                                     required={true}
+                                                    onClick={(e)=> changeDateDo(e)}
                                                 >
                                                     <option value="0">Chọn Tỉnh</option>
-                                                    <option value="1">Lâm Đồng</option>
-                                                    <option value="2">Tây Ninh</option>
-                                                    <option value="3">Tiền Giang</option>
-                                                    <option value="4">Kiên Giang</option>
+                                                    {provinceArray.map((item:any,index:number)=>{
+                                                        return <option value={item.id} key={index}>{item.name}</option>
+
+                                                    })}
                                                 </select>
                                             </div>
                                         </div>
@@ -84,15 +130,14 @@ export default function HeaderDesktop(props: IHeaderDesktopProps) {
                                                 <input
                                                     type="text"
                                                     name="nhapso"
-                                                    id="inputDate"
+                                                    id="inputNumber"
                                                     className="form-control"
-                                                    value=""
                                                     required={true}
                                                     placeholder="Nhập số của bạn"
                                                 />
                                             </div>
                                             <div className="col-sm-4">
-                                                <button type="button" className="btn btn-default">
+                                                <button type="button" className="btn btn-default" onClick={()=> clickButton()}>
                                                     Kết quả
                                                 </button>
                                             </div>
@@ -114,96 +159,45 @@ export default function HeaderDesktop(props: IHeaderDesktopProps) {
                                 <div id="dmenu" className="hidden-xs hidden-sm">
                                     <ul className="mainnav">
                                         <li id="home" className="level0 item">
-                                            <a href="#">Trang chủ</a>
+                                            <a  onClick={()=>{router.push('/')}}>Trang chủ</a>
                                         </li>
                                         <li className="level0 item">
                                             <a href="#">Kết quả xổ số</a>
                                             <div className="wrap_submenu">
                                                 <ul className="level0">
-                                                    <li className="level1 has-child">
-                                                        <a href="#">Miền Nam</a>
+                                                    {area.map((item: any, index: number) => {
+                                                        return  <li className="level1 has-child" key={index}> 
+                                                        <a href="#">{item.name}</a>
                                                         <div className="wrap_submenu">
                                                             <ul className="level1">
                                                                 <li className="level2">
-                                                                    <a href="#">Thứ 2</a>
+                                                                    <a style={{cursor:'pointer'}} onClick={()=> redirectPage(2,item.id,item.key)}>Thứ 2</a>
                                                                 </li>
                                                                 <li className="level2">
-                                                                    <a href="#">Thứ 3</a>
+                                                                    <a style={{cursor:'pointer'}} onClick={()=> redirectPage(3,item.id,item.key)}>Thứ 3</a>
                                                                 </li>
                                                                 <li className="level2">
-                                                                    <a href="#">Thứ 4</a>
+                                                                    <a style={{cursor:'pointer'}} onClick={()=> redirectPage(4,item.id,item.key)}>Thứ 4</a>
                                                                 </li>
                                                                 <li className="level2">
-                                                                    <a href="#">Thứ 5</a>
+                                                                    <a style={{cursor:'pointer'}} onClick={()=> redirectPage(5,item.id,item.key)}>Thứ 5</a>
                                                                 </li>
                                                                 <li className="level2">
-                                                                    <a href="#">Thứ 6</a>
+                                                                    <a style={{cursor:'pointer'}} onClick={()=> redirectPage(6,item.id,item.key)}>Thứ 6</a>
                                                                 </li>
                                                                 <li className="level2">
-                                                                    <a href="#">Thứ 7</a>
+                                                                    <a style={{cursor:'pointer'}} onClick={()=> redirectPage(7,item.id,item.key)}>Thứ 7</a>
                                                                 </li>
                                                                 <li className="level2">
-                                                                    <a href="#">Chủ Nhật</a>
+                                                                    <a style={{cursor:'pointer'}} onClick={()=> redirectPage(8,item.id,item.key)}>Chủ Nhật</a>
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                     </li>
-                                                    <li className="level1 has-child">
-                                                        <a href="#">Miền Trung</a>
-                                                        <div className="wrap_submenu">
-                                                            <ul className="level1">
-                                                                <li className="level2">
-                                                                    <a href="#">Thứ 2</a>
-                                                                </li>
-                                                                <li className="level2">
-                                                                    <a href="#">Thứ 3</a>
-                                                                </li>
-                                                                <li className="level2">
-                                                                    <a href="#">Thứ 4</a>
-                                                                </li>
-                                                                <li className="level2">
-                                                                    <a href="#">Thứ 5</a>
-                                                                </li>
-                                                                <li className="level2">
-                                                                    <a href="#">Thứ 6</a>
-                                                                </li>
-                                                                <li className="level2">
-                                                                    <a href="#">Thứ 7</a>
-                                                                </li>
-                                                                <li className="level2">
-                                                                    <a href="#">Chủ Nhật</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </li>
-                                                    <li className="level1 has-child">
-                                                        <a href="#">Miền Bắc</a>
-                                                        <div className="wrap_submenu">
-                                                            <ul className="level1">
-                                                                <li className="level2">
-                                                                    <a href="#">Thứ 2</a>
-                                                                </li>
-                                                                <li className="level2">
-                                                                    <a href="#">Thứ 3</a>
-                                                                </li>
-                                                                <li className="level2">
-                                                                    <a href="#">Thứ 4</a>
-                                                                </li>
-                                                                <li className="level2">
-                                                                    <a href="#">Thứ 5</a>
-                                                                </li>
-                                                                <li className="level2">
-                                                                    <a href="#">Thứ 6</a>
-                                                                </li>
-                                                                <li className="level2">
-                                                                    <a href="#">Thứ 7</a>
-                                                                </li>
-                                                                <li className="level2">
-                                                                    <a href="#">Chủ Nhật</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </li>
+                                                    }
+                                                    )}
+                                                   
+                                                   
                                                     <li className="level1 has-child li-special">
                                                         <a href="#">Theo Tỉnh</a>
                                                         <div className="wrap_submenu wrap-bigsubmenu">
@@ -350,34 +344,14 @@ export default function HeaderDesktop(props: IHeaderDesktopProps) {
                                                             </ul>
                                                         </div>
                                                     </li>
-                                                    <li className="level1 has-child">
-                                                        <a href="#">Điện Toán</a>
-                                                        <div className="wrap_submenu">
-                                                            <ul className="level1">
-                                                                <li className="level2">
-                                                                    <a href="#">1*2*3</a>
-                                                                </li>
-                                                                <li className="level2">
-                                                                    <a href="#">6x36</a>
-                                                                </li>
-                                                                <li className="level2">
-                                                                    <a href="#">Thần Tài 4</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </li>
+                                                    
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li className="level0 item">
-                                            <a href="#">Thống kê</a>
-                                        </li>
-                                        <li className="level0 item">
-                                            <a href="#">In giấy dò</a>
-                                        </li>
-                                        <li className="level0 item">
-                                            <a href="#">Tin tức</a>
-                                        </li>
+                                        {/* <li className="level0 item">
+                                        <a style={{cursor:'pointer'}} onClick={()=> router.push('/thong-ke')}>Thống kê</a>
+                                        </li> */}
+                                     
                                     </ul>
                                 </div>
                                 <div id="mmenu" className="menu-offcanvas hidden-md hidden-lg">
@@ -388,14 +362,7 @@ export default function HeaderDesktop(props: IHeaderDesktopProps) {
                                 </div>
                             </div>
                             <div id="user-wrap">
-                                <ul className="mainnav fontsmall">
-                                    <li className="level0 item">
-                                        <a href="#">Đăng Nhập</a>
-                                    </li>
-                                    <li className="level0 item">
-                                        <a href="#">Đăng Ký</a>
-                                    </li>
-                                </ul>
+                               
                             </div>
                         </div>
                     </div>

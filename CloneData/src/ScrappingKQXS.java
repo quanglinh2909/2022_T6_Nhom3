@@ -115,6 +115,7 @@ public class ScrappingKQXS {
                 Elements list = doc.select(syntax);
                 String khuVuc = "MB";
                 if (list.size() == 0) {
+
                     saveLog(time,"CLONE_DATA", khuVuc + "_" + date + ".csv", 0);
                     return;
                 }
@@ -141,6 +142,7 @@ public class ScrappingKQXS {
                         }
                     }
                 }
+                System.out.println("vao");
                 writeCSV(result, date, Connect.getInstance().getValueByName("PATH_SAVE_CSV", 1), khuVuc);
 
             } catch (IOException e) {
